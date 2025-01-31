@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,5 +62,11 @@ public class AccountController {
 	@GetMapping("/all")
 	public ResponseEntity<List<AccountDto>> getAllAccounts(){
 		return ResponseEntity.ok(accountService.getAllAccounts());
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<String> deleteAccount(@PathVariable Long id){
+		accountService.deleteAccount(id);
+		return ResponseEntity.ok("Account successfully deleted with id: " + id);
 	}
  }
