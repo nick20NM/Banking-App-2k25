@@ -1,5 +1,6 @@
 package com.alpha.www.Banking.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
@@ -56,4 +57,9 @@ public class AccountController {
 		AccountDto account = accountService.withdraw(id, amount);
 		return ResponseEntity.ok(account);
 	}
-}
+	
+	@GetMapping("/all")
+	public ResponseEntity<List<AccountDto>> getAllAccounts(){
+		return ResponseEntity.ok(accountService.getAllAccounts());
+	}
+ }
