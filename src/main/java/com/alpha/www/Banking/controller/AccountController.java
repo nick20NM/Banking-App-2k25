@@ -2,6 +2,8 @@ package com.alpha.www.Banking.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,5 +26,10 @@ public class AccountController {
 	@PostMapping("/create")
 	public ResponseEntity<AccountDto> createAccount(@RequestBody AccountDto accountDto){
 		return new ResponseEntity<>(accountService.createAccount(accountDto), HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<AccountDto> getAccountById(@PathVariable Long id){
+		return ResponseEntity.ok(accountService.getAccountById(id));
 	}
 }
